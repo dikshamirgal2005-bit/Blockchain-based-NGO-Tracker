@@ -1,1 +1,30 @@
-{ "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }] }
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "ngo-donation-tracker": {
+      "root": "artifacts/ngo-donation-tracker",
+      "framework": "vite",
+      "installCommand": "pnpm --dir ../.. install",
+      "buildCommand": "BASE_PATH=/ pnpm --dir ../.. --filter @workspace/ngo-donation-tracker run build",
+      "outputDirectory": "dist/public"
+    },
+    "ngo-donation-tracker-deck-import": {
+      "root": "artifacts/ngo-donation-tracker-deck-import",
+      "framework": "vite",
+      "installCommand": "pnpm --dir ../.. install",
+      "buildCommand": "PORT=5173 BASE_PATH=/ngo-donation-tracker-deck-import/ pnpm --dir ../.. --filter @workspace/ngo-donation-tracker-deck-import run build",
+      "outputDirectory": "dist/public"
+    },
+    "api-server": {
+      "root": "artifacts/api-server",
+      "framework": "express",
+      "entrypoint": "src/app.ts",
+      "installCommand": "pnpm --dir ../.. install"
+    }
+  },
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": { "service": "api-server" } },
+    { "source": "/ngo-donation-tracker-deck-import/(.*)", "destination": { "service": "ngo-donation-tracker-deck-import" } },
+    { "source": "/(.*)", "destination": { "service": "ngo-donation-tracker" } }
+  ]
+}
