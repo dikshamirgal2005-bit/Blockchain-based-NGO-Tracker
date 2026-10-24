@@ -31,6 +31,8 @@ A role-based demonstration of transparent charitable funding, where NGO mileston
 - The first prototype keeps its shared demo state in browser storage so a presenter can switch roles and complete the workflow without configuring accounts or a database.
 - Blockchain transactions are simulated for demonstration only; the prototype does not custody funds, connect a wallet, or publish to a live network.
 - Evidence file selections are represented as saved metadata in the browser demo; they are not uploaded to persistent remote storage.
+- Proof photos: NGOs can attach photos to milestone evidence (resized and stored in the browser) or add the bundled sample photos from `public/proof/`. Donors and verifiers see them as a clickable gallery.
+- NGO ratings: a donor who has contributed to an NGO's project can rate that NGO 1-5 stars with an optional review (one rating per donor per NGO; rating again replaces it). Ratings live in the same browser demo state.
 
 ## Product
 
